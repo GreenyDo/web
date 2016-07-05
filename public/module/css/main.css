@@ -1,0 +1,71 @@
+html,body{
+	margin: 0;
+	border: 0;
+	padding: 0;
+	height: 100%;
+}
+#wrap{
+	top: 100px;
+	width: 599px;
+	height: 399px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	border-radius: 10px;
+	border: 2px solid #222;
+}
+#turn_box{
+	position: absolute;
+	width: 4800px;
+	height: 399px;
+	margin: 0;
+	overflow: hidden;
+	left: -600px;
+}
+#turn_box img{
+	float: left;
+}
+#back_front{
+	width: 600px;
+	height: 50px;
+	position: absolute;
+	top: 180px;
+	display: none;
+}
+#back,#front{
+	width: 50px;
+	height: 50px;
+}
+#back{
+	float: left;
+	margin-left: 10px;
+}
+#front{
+	float: right;
+	margin-right: 10px;
+}
+#slid_dot{
+	width: 185px;
+	height: 20px;
+	border:0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 15px;
+	left: 200px;
+}
+.dot{
+	display: block;
+	float: left;
+	width: 12px;
+	height: 12px;
+	border-radius: 6px;
+	background: black;
+	opacity: 0.6;
+	margin-left: 18px;
+}
+.on{
+	background: #FF6600;
+	opacity: 1.0;
+}
+

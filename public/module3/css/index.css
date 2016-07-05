@@ -1,0 +1,63 @@
+/*主体和左边部分*/
+html,body,div{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+#animate_box{
+	width: 800px;
+	height: 400px;
+	position: relative;
+	top: 100px;
+	margin: 0 auto;
+	border: 2px black solid;
+	border-radius: 8px;
+}
+.little_box{
+	float: left;
+	width: 398px;
+	height: 398px;
+	
+}
+#left_box{
+	height: 400px;
+	background: black;
+}
+#right_box{
+}
+#globle{
+	position: absolute;
+	left: 100px;
+	top: 150px;
+	width: 150px;
+	height: 150px;
+}
+/*linear 设置平滑 infinite设置动画重复*/
+#globle{
+	animation:16s spin infinite linear;
+	-webkit-transform-origin: 80px 75px;
+  	-moz-transform-origin: 80px 75px;
+  	-o-transform-origin: 80px 75px;
+  	-ms-transform-origin: 80px 75px;
+  	transform-origin: 80px 75px;
+}
+@keyframes spin{
+	to{
+		transform: rotate(360deg);
+		-ms-transform: rotate(360deg);		/* IE 9 */
+		-webkit-transform: rotate(360deg);	/* Safari and Chrome */
+		-o-transform: rotate(360deg);		/* Opera */
+		-moz-transform: rotate(360deg);	
+	}
+}
+#star{
+	position: absolute;
+}
+#star{
+	animation:6s flicker infinite linear;
+}
+@keyframes flicker{
+	0%{opacity: 0;}
+	50%{opacity: 1;}
+	100%{opacity: 0;}
+}

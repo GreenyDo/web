@@ -1,0 +1,99 @@
+#container{
+    width: 380px;
+    height: 380px;
+    position: relative;
+    top: 15px;
+    left: 15px;
+}
+/*表盘*/
+#clock {
+    width: 361px;
+    height: 361px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    /* box-sizing: border-box  元素的内边距和边框不再会增加它的宽度*/
+   
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+/*刻度*/
+.scale {
+    height: 4px;
+    width: 361px;
+    position: absolute;
+    top: 179px;
+    background: black;
+}
+/*刻度遮罩*/
+#bar {
+    position: absolute;
+    width: 345px;
+    height: 345px;
+    left: 10px;
+    top: 10px;
+    float: left;
+    background: #fff;
+    border-radius: 50%;
+}
+/*时针&分针&秒针*/
+.stick{
+    border-radius: 2px;
+    width: 4px;
+    background: black;
+}
+/*秒针*/
+#second {
+    background: red;
+    position: absolute;
+    z-index: 21;
+    left: 178px;
+    top: 18px;
+    height: 163px;
+    box-shadow: 2px -4px 6px #888;
+    -webkit-transform-origin: 2px 163px;
+    -moz-transform-origin: 2px 163px;
+    -o-transform-origin: 2px 163px;
+    -ms-transform-origin: 2px 163px;
+    transform-origin: 2px 163px;
+}
+/*时针*/
+#hour {
+    position: absolute;
+    z-index: 16;
+    left: 178px;
+    top: 80px;
+    height: 100px;
+    box-shadow: 2px 3px 8px #999;
+    -webkit-transform-origin: 2px 100px;
+    -moz-transform-origin: 2px 100px;
+    -o-transform-origin: 2px 100px;
+    -ms-transform-origin: 2px 100px;
+    transform-origin: 2px 100px;
+}
+/*分针*/
+#minute {
+    box-shadow: 2px 3px 8px #999;
+    position: absolute;
+    z-index: 17;
+    top: 32px;
+    left: 178px;
+    height: 150px;
+    -webkit-transform-origin: 2px 150px;
+    -moz-transform-origin: 2px 150px;
+    -o-transform-origin: 2px 150px;
+    -ms-transform-origin: 2px 150px;
+    transform-origin: 2px 150px;
+}
+/*中心点*/
+#center {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    z-index: 20;
+    background: red;
+    border: 3px solid #999;
+    left: 173px;
+    top: 174px;
+    position: absolute;
+}

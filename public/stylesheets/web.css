@@ -1,0 +1,138 @@
+html,body,div,ul,li{
+	margin: 0;
+	border:0;
+	padding: 0;
+}
+#web_nav{
+	width: 1000px;
+	height: 80px;
+	position: relative;
+	margin: 0 auto;
+	border: 1px rgba(22,177,107,0.96) solid;
+	border-radius: 15px;
+	background: rgba(22,177,107,0.96);
+	box-shadow: 3px 3px 6px #777;
+}
+#nav_logo{
+	font-size: 35px;
+	font-family: "微软雅黑";
+	position: absolute;
+	left: 30px;
+	bottom: 8px;
+	margin: 0;
+	padding: 0;
+	text-shadow:4px 4px 8px #777;
+}
+#to_homepage{
+	width: 100px;
+	height: 32px;
+	position: absolute;
+	left: 460px;
+	bottom: 8px;
+	cursor: pointer;
+}
+#to_homepage img{
+	width: 30px;
+	height: 30px;
+}
+#to_homepage p{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 32px;
+	bottom: 4px;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+#web_body{
+	position: relative;
+	top: 20px;
+	width: 1000px;
+	margin: 0 auto;
+}
+#sidebar{
+	position: fixed;
+	top: 195px;
+	left: 60px;
+	z-index: 30;
+}
+#sidebar ul li{
+	width: 100px;
+	display: block;
+	position: relative;
+	margin-bottom: 7px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+#sidebar .side_circle{
+	width: 8px;
+	height: 8px;
+	border: 2px solid black;
+	border-radius: 50%;
+	float: left;
+	margin-top: 3px;
+	margin-right: 5px;
+}
+/*#sidebar .side_text{
+	font-weight: bolder;
+}*/
+#web_content iframe{
+	width: 850px;
+	height: 550px;
+	border:0;
+}
+#web_content .button_code{
+	position: absolute;
+	bottom: 30px;
+	border: 2px solid #222;
+	width: 110px;
+	height: 38px;
+	left: 450px;
+	font-size: 25px;
+	font-family: "微软雅黑";
+	border-radius: 25px;
+	cursor: pointer;
+}
+#codebox1,#codebox2,#codebox3,#codebox4{
+	width: 570px;
+	height: 520px;
+	border: 2px solid #222;
+	position: absolute;
+	z-index: 29;
+	left: 222px;
+	top: 70px;
+	border-radius: 8px;
+	font-size: 15px;
+	font-family: "consolas";
+}
+.content_box{
+	width: 996px;
+	height: 700px;
+	border-radius: 10px;
+	margin-bottom: 4px;
+	box-shadow: 3px 3px 6px #777;
+	text-align: center;
+	position: relative;
+}
+#contbox_1{
+	background: rgba(0,62,68,0.9);
+}
+#contbox_2{
+	background: rgb(0,85,62);
+}
+#contbox_3{
+	background: rgba(13,68,0,0.92);
+}
+#contbox_4{
+	background: rgba(68,0,0,0.85); 
+}
+#contbox_5{
+	background: rgba(20,0,68,0.82);
+}
+#contbox_6{
+	background: #055;
+}
+#contbox_7{
+	background: #00663C;
+}

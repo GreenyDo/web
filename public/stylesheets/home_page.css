@@ -1,0 +1,151 @@
+body{
+	font-family: '微软雅黑';
+}
+nav a{
+	color: #CCC;
+	font-size: 15px;
+}
+/*页面头部*/
+.pagehead{
+	width: 1210px;
+	height: 120px;
+	background: #888888;
+	margin: 0 auto;
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 9px 6px 10px #777777;
+	margin-top: 4px;
+}
+/*页面logo*/
+.logo{
+	position: absolute;
+	display: block;
+	left: 45px;
+	top: 60px;
+	font-size: 30px;
+	text-shadow:5px 5px 7px #666666;
+	color: #333333;
+}
+/*头部导航栏*/
+nav{
+	position: absolute;
+	left: 300px;
+	top: 80px;
+	border:1px;
+}
+nav a{
+	display: block;
+	float: left;
+	margin-left: 50px;
+}
+nav a:link{
+	text-decoration: none;
+	color: #CCC;
+}
+nav a:visited{
+	text-decoration: none;
+	color: #CCC;
+}
+nav a:hover{
+	text-decoration: none;
+	color: #770000;
+}
+nav a:active{
+	text-decoration: none;
+	color: #CCC;
+}
+/*github图标*/
+#githubicon{
+	position: absolute;
+	display: block;
+	left: 750px;
+	top: 70px;
+	height: 35px;
+	width: 35px;
+}
+/*图标动画效果环*/
+.ring{
+	position: absolute;
+	display: block;
+	left: 745px;
+	top: 65px;
+	height: 45px;
+	width: 45px;
+	border: 3px solid #888;
+    border-radius : 50%;
+    cursor:pointer;
+}
+/*Email*/
+#myemail{
+	display: block;
+	position: absolute;
+	left: 950px;
+	top: 70px;
+}
+/*Email图标*/
+#myemail img{
+	height: 28px;
+	width: 34px;
+	cursor:pointer;
+}
+/*email 图标动画*/
+.myemaila{
+	box-shadow: 3px 3px 10px #444;
+}
+/*Email*/
+#myemail p{
+	float: left;
+	margin:-2px 6px;
+    visibility: hidden;
+    font-size: 13px;
+}
+/*页面主体*/
+.pagemain{
+	width: 1210px;
+	margin: 0 auto;
+	min-height: 800px;
+}
+/*文章主题*/
+article{
+	display: block;
+	width: 78%;
+	float: left;
+	margin: 20px auto 0;
+	border:1px;
+	text-align: center;
+}
+/*文章分割线*/
+.separate{
+	font-size: 30px;
+}
+/*文章&侧栏分割线*/
+.boundary{
+	display: block;
+	width: 4px;
+	height: 750px;
+	background: #888888;
+	float: left;
+	margin: 2px 0 0 0;
+	box-shadow: 5px 1px 20px #777777;
+	border-radius: 2px;
+}
+/*侧栏*/
+aside{
+	display: block;
+	width: 19%;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+	border:1px;
+}
+aside h3{
+	display: block;
+	margin-top: 10px;
+	margin-left: 14px;
+}
+/*页脚*/
+footer{
+	width: 1300px;
+	text-align: center;
+	clear: both;
+}
