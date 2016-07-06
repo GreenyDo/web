@@ -105,6 +105,7 @@ html,body,div,ul,li{
 	border-radius: 8px;
 	font-size: 15px;
 	font-family: "consolas";
+	text-align: left;
 }
 .content_box{
 	width: 996px;

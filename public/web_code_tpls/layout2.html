@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!-- 三栏布局，左右宽度固定，中间自适应 -->
+	<head>
+		<title>三栏布局</title>
+		<style>
+			html,body{
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+			#left,#right{
+				position: absolute;
+				height: 100%;
+				top: 0;
+				width: 200px;
+			}
+			#left{
+				left: 0;
+				background: #606;
+			}
+			#right{
+				right: 0;
+				background: #660;
+			}
+			#main{
+				margin:0 200px;
+				background: #066;
+				height: 100%;
+			}
+			.box{
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="left">左定宽</div>
+		<div id="main">
+			<div class="box">自适应</div>
+		</div>
+		<div id="right"></div>
+	</body>
+</html>
