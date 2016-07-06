@@ -3,6 +3,72 @@
 <p class="separate">. . . . . . . . . . . . . . . . . .</p>
 <!-- 文章配图 -->
 <br/>
-<img src="" alt="图片加载异常">
 <br/>
-<p>异步io正文正文正文正文</p>
+<div id="center_article">
+	<pre><code>
+		闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数。
+		作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。
+		闭包
+		直到匿名函数被销毁，因为匿名函数会用到外部函数，外部函数的活动对象才会被销毁。
+		compareNames = null;
+		慎重使用闭包，携带更多作用域，占更多内存。
+		闭包与变量
+		eg.
+		function createFunctions() {
+		        var result = new Array();
+		        
+		        for (var i = 0; i<10; i++) {
+		                result [i] = function() {
+		                        return i;
+		                };
+		        }
+		        return result;
+		}
+		每个函数都是返回10；
+		创建另一个匿名函数强制让闭包的行为符合预期
+		function createFunctions() {
+		        var result = new Array();
+		        
+		        for (var i=0; i<10; i++) {
+		                result[i] = function(num) {
+		                        return function() {
+		                                return num;
+		                        };
+		                }(i);
+		        }
+		        
+		        return result;
+		}        
+	</code></pre>
+	<pre><code>
+		闭包导致的内存泄露
+		var result = (function() {
+		    var small = {};
+		    var big = new Array(10000000);
+		    //do something
+		    return function(){
+		        if(big.indexOf("someValue") !== -1) {
+		            return null;
+		        } else {
+		            return small;
+		        }
+		    }
+		})();
+		这里，创建了一个闭包。使得返回的函数存储在result中，而result函数能够访问其作用域内的small对象和big对象。由于big对象和small对象都可能被访问，所以垃圾回收器不会去碰这两个对象，它们不会被回收。我们将上述代码改成如下形式：
+		var result = (function() {
+		    var small = {};
+		    var big = new Array(10000000);
+		    var hasSomeValue;
+		    //do something
+		    hasSomeValue = big.indexOf("someValue") !== -1;
+		    return function(){
+		        if(hasSomeValue) {
+		            return null;
+		        } else {
+		            return small;
+		        }
+		    }
+		})();
+		这样，函数内部只能够访问到hasSomeValue变量和small变量了，big没有办法通过任何形式被访问到，垃圾回收器将会对其进行回收，节省了大量的内存。
+	</code></pre>
+</div>

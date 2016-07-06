@@ -3,6 +3,47 @@
 <p class="separate">. . . . . . . . . . . . . . . . . .</p>
 <!-- 文章配图 -->
 <br/>
-<img src="" alt="图片加载异常">
 <br/>
-<p>异步io正文正文正文正文</p>
+<div id="center_article">
+	Buffer是一个典型的javascript与C++结合的模块，性能相关部分用c++实现，将非性能相关的部分用javascript实现。位于全局对象上，无须require()即可直接使用。<br/>
+	<h4>Buffer对象</h4>
+	Buffer对象类似与数组，它的元素为16进制的两位数，即0-255的数值。eg. e6 b1 a5  <br/>
+	UTF-8下，文字占3个元素，字母和半角标点符号占1个元素。<br/>
+	Buffer对象的内存分配不是在V8的堆内存中，而是在Node的C++层面实现内存的申请。<br/>
+	<h4>Buffer的转换</h4>
+	Buffer对象可以与字符串之间相互转换，目前支持的字符串编码类型有：ASCII、UTF-8、UTF-16LE/UCS-2、Base64、Binary、Hex。字符串转Buffer对象主要是通过构造函数完成的：new Buffer(str,[encoding]);encoding默认UTF-8编码。一个Buffer对象可以存储不同编码类型的字符串转码的值，调用write()方法可以实现该目的。代码如下：buf.write(string,[offset],[length],[encoding])。反转回字符串时需要谨慎处理。<br/>
+	Buffer转字符串：buf.toString([encoding],[start],[end])。<br/>
+	<h4>Buffer的拼接</h4>
+	常见的从输入流中读取内容的实例：<br/>
+	<pre><code>
+		var fs = require('fs');
+		var rs = fs.createReadStream('test.md');
+		var data = '';
+		rs.on('data',function(chunk){
+		data+=chunk;
+	});
+	rs.on('end',function(){
+	console.log(data);
+});
+	</code></pre>
+	<br/>
+	此代码长用于流读取的示范，data事件中获取的chunk对象即是Buffer对象，容易将Buffer当做字符串来理解(Buffer是二进制数据)，一旦输入流中有宽字节编码时，问题就会暴露出来。因为：data+=chunk; 等价于data = data.toString()+chunk.toString(); <br/>
+	setEncoding()与string_decoder(),设置编码方法。
+	<br/>
+	<h4>正确拼接Buffer</h4>
+	<pre><code>
+		var chunks = [];
+		var size = 0;
+		res.on('data',function(chunk){
+		chunks.push(chunk);
+		size += chunk.length;
+	});
+	res.on('end',function(){
+	var buf = Buffer.concat(chunks,size);
+	var str = iconv.decode(buf,'utf-8');
+	console.log(str);
+});
+	</code></pre><br/>
+	通过预先转换静态内容为Buffer对象，可以有效地减少CPU的重复使用，节省服务器资源，可以选择的将页面中的动态内容和静态内容分离，静态内容可以通过预先转换为Buffer的方式，使性能得到提升。<br/>
+	文件读取时，highWaterMark设置对性能的影响至关重要。
+</div>

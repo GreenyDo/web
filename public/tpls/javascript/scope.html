@@ -3,6 +3,38 @@
 <p class="separate">. . . . . . . . . . . . . . . . . .</p>
 <!-- 文章配图 -->
 <br/>
-<img src="" alt="图片加载异常">
 <br/>
-<p>异步io正文正文正文正文</p>
+<div id="center_article">
+	<pre><code>
+		没有块级作用域
+		if (true) {
+		    var color = "blue";
+		}
+		alert(color);  //blue
+		for (var i=0; i<10; i++) {
+		    doSomething(i);
+		}
+		alert(i);
+		搜索变量过程从作用域的前端开始
+	</code></pre>
+	<h4>apply()和call()</h4>
+	<pre><code>
+		用途都是在特定的作用域中调用函数，实际上等于设置函数体内this对象的值
+		apply();接收两个参数
+		1.在其中运行函数的作用域
+		2.参数数组；//可以是Array的实例，也可以是arguments对象
+		eg.
+		function sum (num1,num2) {
+		        return num1+num2;
+		}
+		function callSum1(num1,num2) {
+		        return sum.apply(this, arguments);//this 是window
+		}
+		function callSum2(num1,num2) {
+		        return sum.apply(this, [num1,num2]);
+		}
+		call()与apply()函数的不同之处在于，接收参数的方式不同。
+		传递给函数的参数必须逐个列举出来
+		真正强大的地方是能够扩充函数赖以运行的作用域
+	</code></pre>
+</div>

@@ -1,8 +1,133 @@
 <!-- 文章标题 -->
-<h2>HTTP指南</h2>
+<h2>HTTP</h2>
 <p class="separate">. . . . . . . . . . . . . . . . . .</p>
 <!-- 文章配图 -->
 <br/>
-<img src="" alt="图片加载异常">
 <br/>
-<p>异步io正文正文正文正文</p>
+<div id="center_article">
+	<h4>特点</h4>
+	<pre><code>
+		简单快速: 
+		http协议简单,通信速度很快; 
+		灵活: 
+		http协议允许传输任意类型的数据; 
+		短连接: 
+		http协议限制每次连接只处理一个请求,服务器对客户端的请求作出响应后,马上断开连接.这种方式可以节省传输时间.
+	</code></pre>
+	<h4>请求</h4>
+	<pre><code>
+		http协议规定:一个完整的http请求包含'请求行','请求头','请求体'三个部分;
+		请求行：包含了请求方法,请求资源路径,http协议版本. "GET /resources/images/ HTTP/1.1"
+		请求头:包含了对客户端的环境描述,客户端请求的主机地址等信息.
+		Accept: text/html ( 客户端所能接收的数据类型 )
+		Accept-Language: zh-cn ( 客户端的语言环境 )
+		Accept-Encoding: gzip( 客户端支持的数据压缩格式 )
+		Host: m.baidu.com( 客户端想访问的服务器主机地址 )
+		User-Agent: Mozilla/5.0(Macintosh;Intel Mac OS X10.10 rv:37.0) Gecko/20100101Firefox/37.0( 客户端的类型,客户端的软件环境 )
+		请求体:客户端发给服务器的具体数据,比如文件/图片等.
+	</code></pre>
+	<h4>响应</h4>
+	<pre><code>
+		http协议规定:一个完整的http响应包含'状态行','响应头','实体内容'三个部分;
+		状态行:包含了http协议版本,状态吗,状态英文名称.
+		"HTTP/1.1 200 OK"
+		响应头:包含了对服务器的描述,对返回数据的描述.
+		Content-Encoding: gzip(服务器支持的数据压缩格式) Content-Length: 1528(返回数据的长度)
+		Content-Type:application/xhtml+xml;charset=utf-8(返回数据的类型)
+		Date: Mon,15Jun201509:06:46GMT(响应的时间) Server: apache (服务器类型)
+		实体内容:服务器返回给客户端的具体数据(图片/html/文件...).
+	</code></pre>
+	<h4>http方法</h4>
+	<pre><code>
+		http协议定义了很多方法对应不同的资源操作,其中最常用的是GET和POST方法。 
+		eg：GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT、PATCH 
+		增:PUT 
+		删:DELETE 
+		改:POST 
+		查:GET 
+		因为GET和POST可以实现上述所有操作,所以,在现实开发中,GET和POST方法使用的最为广泛，除此以外HEAD请求使用频率也比较高；
+		GET 
+		在请求URL后面以?的形式跟上发给服务器的参数,参数以”参数名”=”参数值”的形式拼接,多个参数之间用&分隔; 
+		GET的本质是从服务器得到数据,效率更高.并且GET请求可以被缓存. 
+		注意:GET的长度是有限制的,不同的浏览器有不同的长度限制,一般在2~8K之间; 
+		POST 
+		POST的本质是向服务器发送数据,也可以获得服务器处理之后的结果,效率不如GET.POST请求不可以被缓存,每次刷新之后都需要重新提交表单. 
+		发送给服务器的参数全部放在’请求体’中; 
+		理论上,POST传递的数据量没有限制. 
+		注意:所有涉及到用户隐私的数据(密码/银行卡号等…)都要用POST的方式传递. 
+		HEAD 
+		HEAD方法通常用在下载文件之前,获取远程服务器的文件信息!相比于GET请求,不会下载文件数据,只获得响应头信息! 
+		一般,使用HEAD方法的目的是提前告诉用户下载文件的信息,由用户确定是否下载文件!所以, HEAD方法,最好发送同步请求!
+	</code></pre>
+	<h4>响应状态码</h4>
+	<pre><code>
+		1xx:信息响应类，表示接收到请求并且继续处理 
+		2xx:处理成功响应类，表示动作被成功接收、理解和接受 
+		3xx:重定向响应类，为了完成指定的动作，必须接受进一步处理 
+		4xx:客户端错误，客户请求包含语法错误或者是不能正确执行 
+		5xx:服务端错误，服务器不能正确执行一个正确的请求;
+	</code></pre>
+	<h4>常见的状态码</h4>
+	<pre><code>
+		100 Continue
+		服务器仅接收到部分请求，但是一旦服务器并没有拒绝该请求，客户端应该继续发送其余的请求。
+		101 Switching Protocols
+		服务器转换协议：服务器将遵从客户的请求转换到另外一种协议。
+		200 OK
+		请求成功（其后是对GET和POST请求的应答文档。）
+		201 Created
+		请求被创建完成，同时新的资源被创建。
+		202 Accepted
+		供处理的请求已被接受，但是处理未完成。
+		203 Non-authoritative Information
+		文档已经正常地返回，但一些应答头可能不正确，因为使用的是文档的拷贝。
+		204 No Content
+		没有新文档。浏览器应该继续显示原来的文档。如果用户定期地刷新页面，而Servlet可以确定用户文档足够新，这个状态代码是很有用的。
+		205 Reset Content
+		没有新文档。但浏览器应该重置它所显示的内容。用来强制浏览器清除表单输入内容。
+		206 Partial Content
+		客户发送了一个带有Range头的GET请求，服务器完成了它。
+		300 Multiple Choices
+		多重选择。链接列表。用户可以选择某链接到达目的地。最多允许五个地址。
+		301 Moved Permanently
+		所请求的页面已经转移至新的url。
+		302 Found
+		所请求的页面已经临时转移至新的url。
+		303 See Other
+		所请求的页面可在别的url下被找到。
+		304 Not Modified
+		未按预期修改文档。客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。
+		305 Use Proxy
+		客户请求的文档应该通过Location头所指明的代理服务器提取。
+		306 Unused
+		此代码被用于前一版本。目前已不再使用，但是代码依然被保留。
+		307 Temporary Redirect
+		被请求的页面已经临时移至新的url。
+		400 Bad Request
+		服务器未能理解请求。
+		401 Unauthorized
+		被请求的页面需要用户名和密码。
+		402 Payment Required
+		此代码尚无法使用。
+		403 Forbidden
+		对被请求页面的访问被禁止。
+		404 Not Found
+		服务器无法找到被请求的页面。
+		405 Method Not Allowed
+		请求中指定的方法不被允许。
+		406 Not Acceptable
+		服务器生成的响应无法被客户端所接受。
+		407 Proxy Authentication Required
+		用户必须首先使用代理服务器进行验证，这样请求才会被处理。
+		408 Request Timeout
+		请求超出了服务器的等待时间。
+		500 Internal Server Error
+		请求未完成。服务器遇到不可预知的情况。
+		501 Not Implemented
+		请求未完成。服务器不支持所请求的功能。
+		502 Bad Gateway
+		请求未完成。服务器从上游服务器收到一个无效的响应。
+		505 HTTP Version Not Supported
+		服务器不支持请求中指明的HTTP协议版本。
+	</code></pre>
+</div>

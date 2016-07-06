@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	var $logo=$('#logo');
+	$logo.click(function(){
+		location.href="index.html";
+	});
 	// github操作
 	var $ring=$('#ring');
 	var $github=$('#github');

@@ -3,6 +3,94 @@
 <p class="separate">. . . . . . . . . . . . . . . . . .</p>
 <!-- 文章配图 -->
 <br/>
-<img src="" alt="图片加载异常">
 <br/>
-<p>异步io正文正文正文正文</p>
+<div id="center_article">
+	<pre><code>
+		每个函数都有一个prototype属性，这个属性是一个指针，指向一个对象；
+		这个对象的用途：包含可以由特定类型的所有实例共享的属性和方法；
+		好处：让所有对象实例共享它包含的属性和方法。
+		eg.
+		function Person() {
+		 }
+		Person.prototype.name = "Nicholas";
+		Person.prototype.age = "29";
+		Person.prototype.job = "Software Engineer";
+		Person.prototype.sayName = function() {
+		        alert(this.name);
+		};
+		var person1 = new Person();
+		person1.sayName(); // "Nicholas"
+		所有原型对象都有一个constructor(构造函数)属性，指向函数；
+		实例中有一个[[Prototype]],指向构造函数的对象，一般没有标准方式访问，部分浏览器可以通过
+		__proto__;
+		确定实例与对象之间的是否有联系
+		alert(Person.prototype.isPrototypeOf(person1));   //true
+		alert(Object.getPrototypeOf(person1) == Person.prototype);  //true 
+		可以通过对象实例访问constructor属性；
+		同名属性会屏蔽；
+		使用delete操作符则可以完全删除实例属性，从而让我们能够重新访问原型中的属性。
+		eg.
+		delete person1.name;
+	</code></pre>
+	<h4>原型链式继承</h4>
+	存在的问题： 包含引用类型值的原型属性会被所有实例共享，实践中很少单独使用原型链；
+	<pre><code>
+		function A() {
+		        this.property = true;
+		}
+		A.Prototype.getA_Value = function() {
+		        return this.property;
+		};
+		function B() {
+		        this.Bproperty = false;
+		}
+		//继承了SuperType
+		B.prototype = new A();
+		B.prototyoe.getB_Value = function() {
+		        return this.Bproperty;
+		};
+		var instance = new B();
+		alert (instance.getA_Value());  //true
+		//instance.constructor现在指向的是A,这是因为B.prototype指向了另一个对象——A，A的constructor指向的是SuperType;
+		确定原型和实例的关系
+		alert(instance instanceof Object);  //true
+		alert(instance instanceof A);  //true
+		alert(instance instanceof B);  //true
+		-------
+		查找属性：1.搜索实例；2.搜索B.prototype;3.搜索A.prototype;
+		所有函数默认的原型都是Object的实例，因此默认原型都会包含一个内部指针，指向Object.prototype;
+		一句话，B继承了A，而A继承了Object。当调用instance.toString()时，实际上调用的是保存在Object.prototype中的那个方法。
+		给原型添加方法的代码一定要放在替换原型的语句之后。
+	</code></pre>
+	<h4>组合继承（伪经典继承）</h4>
+	javascript中最常用的继承模式。 <br>
+	思路：使用原型链实现对象原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。
+	<pre><code>
+		eg.
+		function SuperType(name) {
+		        this.name = name;
+		        this.colors = ["red", "blue", "green"];
+		}
+		SuperType.prototype.sayName = function() {
+		        alert(this.name);
+		};
+		function SubType(name, age){
+		        SuperType.call(this, name);
+		        this.age = age;
+		}
+		SubType.prototype = new SuperType();
+		SubType.prototype.constructor = SubType;
+		SubType.prototype.sayAge = function() {
+		        alert(this.age);
+		};
+		var instance1 = new SubType("Nicholas", 29);
+		instance1.colors.push("black");
+		alert(instance1.colors);    //red,blue,green,black
+		instance1.sayName();  //Nicholas
+		instance1.sayAge();  //29
+		var instance2 = new SubType("Greg", 27);
+		alert(instance2.colors);  //red,blue, green
+		instance2.sayName();   //Greg
+		instance2.sayAge();   //27
+	</code></pre>
+</div>
